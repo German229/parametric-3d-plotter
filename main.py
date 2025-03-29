@@ -1,5 +1,6 @@
 from ui.render_2D import *
 
+"Тестовая функция"
 def f(x, y):
     return 0.2 * (x**2 - y**2)
 
