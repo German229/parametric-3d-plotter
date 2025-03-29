@@ -2,8 +2,7 @@ from geometry.vector3 import Vector3
 from geometry.triangle import Triangle
 import math
 from typing import Callable, Tuple
-def func(x, y):
-    pass
+
 
 def generate_points(f : Callable[[float, float], float],\
                     x_range : Tuple[float, float],\
