@@ -48,6 +48,19 @@ class Vector3:
         """Представление вектора в виде tuple"""
         return (self.x, self.y, self.z)
 
+    def rotate_z(self, angle_rad : float) -> "Vector3":
+        cos_a = math.cos(angle_rad)
+        sin_a = math.sin(angle_rad)
+        x = self.x * cos_a - self.y * sin_a
+        y = self.x * sin_a + self.y * cos_a
+        return Vector3(x, y, self.z)
+
+    def rotate_x(self, angle_rad: float) -> "Vector3":
+        cos_a = math.cos(angle_rad)
+        sin_a = math.sin(angle_rad)
+        y = self.y * cos_a - self.z * sin_a
+        z = self.y * sin_a + self.z * cos_a
+        return Vector3(self.x, y, z)
 
 
 """Тестирование класса"""

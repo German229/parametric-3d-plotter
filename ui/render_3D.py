@@ -39,7 +39,9 @@ def draw_axes(canvas, scale=100, offset_x=400, offset_y=300) -> None:
     canvas.create_text(z[0] + 10, z[1], text="Z", fill="blue", font=("Arial", 12, "bold"))
 
 
-def render_mesh(triangles : list, width=800, height=600):
+
+
+def render_mesh(triangles : list, angle_z=0.0, angle_x=0.0, width=800, height=600) -> None:
     """Открывает окно и рисует все треугольники"""
     root = tk.Tk()
     root.title("3D Mesh Viewer")
@@ -47,7 +49,13 @@ def render_mesh(triangles : list, width=800, height=600):
     canvas.pack()
 
     draw_axes(canvas)
+    rotated_tris = []
     for tri in triangles:
-        draw_triangle(canvas, tri)
+        a = tri.a.rotate_z(angle_z).rotate_x(angle_x)
+        b = tri.b.rotate_z(angle_z).rotate_x(angle_x)
+        c = tri.c.rotate_z(angle_z).rotate_x(angle_x)
+        rotated_tris.append(Triangle(a, b, c))
 
+    for tri in rotated_tris:
+        draw_triangle(canvas, tri)
     root.mainloop()

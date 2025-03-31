@@ -3,25 +3,41 @@ from geometry.triangle import Triangle
 import math
 from typing import Callable, Tuple
 
+# Это для main обычного
+# def generate_points(f : Callable[[float, float], float],\
+#                     x_range : Tuple[float, float],\
+#                     y_range : Tuple[float, float],\
+#                     step : float) -> list[list[Vector3]]:
+#     """Строим Сетку точек Vector(x, y, z), точка Vector(x, y, z) лежит по обращению points[y][x]"""
+#     x_min, x_max = x_range
+#     y_min, y_max = y_range
+#     y_curr = y_min
+#     points = []
+#     while y_curr <= y_max:
+#         x_curr = x_min
+#         row = []
+#         while x_curr <= x_max:
+#             z = f(x_curr, y_curr)
+#             row.append(Vector3(x_curr, y_curr, z))
+#             x_curr += step
+#         points.append(row)
+#         y_curr += step
+#     return points
 
-def generate_points(f : Callable[[float, float], float],\
-                    x_range : Tuple[float, float],\
-                    y_range : Tuple[float, float],\
-                    step : float) -> list[list[Vector3]]:
-    """Строим Сетку точек Vector(x, y, z), точка Vector(x, y, z) лежит по обращению points[y][x]"""
-    x_min, x_max = x_range
-    y_min, y_max = y_range
-    y_curr = y_min
+# Это для main_overall
+def generate_points(func, u_range, v_range, u_step, v_step):
+    u_min, u_max = u_range
+    v_min, v_max = v_range
+    v = v_min
     points = []
-    while y_curr <= y_max:
-        x_curr = x_min
+    while v <= v_max:
+        u = u_min
         row = []
-        while x_curr <= x_max:
-            z = f(x_curr, y_curr)
-            row.append(Vector3(x_curr, y_curr, z))
-            x_curr += step
+        while u <= u_max:
+            row.append(func(u, v))
+            u += u_step
         points.append(row)
-        y_curr += step
+        v += v_step
     return points
 
 
