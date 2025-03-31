@@ -74,7 +74,7 @@ for alpha in frange(alpha_min, alpha_max, alpha_step):
         grid = generate_points(user_func, (u_min, u_max), (v_min, v_max), u_step, v_step)
         triangles = build_triangles_from_grid(grid)
 
-        # Отображение графика
+        # Отображение графика под данным градусом
         angle_z = math.radians(45)
         angle_x = math.radians(30)
         render_mesh(triangles, angle_z=angle_z, angle_x=angle_x)
