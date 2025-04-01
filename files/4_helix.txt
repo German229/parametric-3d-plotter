@@ -1,0 +1,27 @@
+# Параметрическая функция F(u,v):
+# x = alpha*u*cos(u)
+# y = beta*u*sin(u)
+# z = v
+# Диапазоны:
+# alpha ∈ [0.5,2] (шаг 0.1)
+# beta  ∈ [0.5,2] (шаг 0.1)
+# u ∈ [0,4*pi], v ∈ [-2,2]
+
+x_expr = alpha*u*cos(u)
+y_expr = beta*u*sin(u)
+z_expr = v
+
+u_min = 0
+u_max = 4*pi
+v_min = -2
+v_max = 2
+u_step = 0.2
+v_step = 0.2
+
+alpha_min = 0.5
+alpha_max = 2
+alpha_step = 0.1
+
+beta_min = 0.5
+beta_max = 2
+beta_step = 0.1

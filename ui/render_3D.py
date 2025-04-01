@@ -8,13 +8,22 @@ from typing import Callable, Tuple
 def project_point(v: Vector3, scale=100, offset_x=400, offset_y=300) -> tuple:
     return (v.x * scale + offset_x, -v.y * scale + offset_y)
 
-def draw_triangle(canvas, triangle : Triangle, color="black") -> None:
-    a = project_point(triangle.a)
-    b = project_point(triangle.b)
-    c = project_point(triangle.c)
-    canvas.create_line(a, b, fill=color)
-    canvas.create_line(b, c, fill=color)
-    canvas.create_line(c, a, fill=color)
+def draw_triangle(canvas, triangle : Triangle, light_dir=Vector3(0, 0, 1)) -> None:
+    a2d = project_point(triangle.a)
+    b2d = project_point(triangle.b)
+    c2d = project_point(triangle.c)
+
+    ab = triangle.b - triangle.a
+    ac = triangle.c - triangle.a
+    normal = ab.cross(ac).normalize()
+
+    light_dir = light_dir.normalize()
+    intensity = max(0, normal.dot(light_dir))
+
+    gray = int(255 * intensity)
+    color = f'#{gray:02x}{gray:02x}{gray:02x}'
+
+    canvas.create_polygon(a2d, b2d, c2d, fill=color, outline=color)
 
 
 def draw_axes(canvas, scale=100, offset_x=400, offset_y=300) -> None:
